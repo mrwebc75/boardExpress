@@ -1,0 +1,21 @@
+{
+  "name": "express_board",
+  "version": "1.0.0",
+  "description": "locals 전역변수 버전",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "ejs"
+  ],
+  "author": "duly",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}

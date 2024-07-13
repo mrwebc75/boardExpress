@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>express</title>
+  <link rel="stylesheet" href="http://localhost:7000/css/reset.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    #wrap{
+      width: 960px;
+      margin: 0 auto;
+    }
+
+    img{
+      display: block;
+      width: 100%;
+    }
+
+    p{font-size: 24px;}
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <p><img src="/images/title.gif" alt="#"></p>
+    <h1 class="text-center"><%=count%>번째 방문을 환영합니다.</h1>
+
+    <p class="text-center"><a href="/board">게시판으로 이동</a></p>
+  </div>
+</body>
+</html>

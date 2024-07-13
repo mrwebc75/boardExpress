@@ -1,0 +1,76 @@
+<%- include('./../fragment/header') %>
+
+    <section>
+      <p><a href="/board" class="btn">목록보기</a></p>
+      <form name="frmEdit" id="frmEdit">
+        <fieldset>
+          <legend>글 입력폼</legend>
+          <input type="hidden" name="id" value="<%=id%>">
+          <input type="hidden" name="pwd" value="<%=pwd%>">
+
+          <table class="smit_elem">
+            <caption>정보입력</caption>
+            <colgroup>
+              <col style="width: 150px" />
+              <col />
+            </colgroup>
+            <thead></thead>
+            <tfoot></tfoot>
+            <tbody>
+              <tr>
+                <th scope="row"><label for="title">글제목</label></th>
+                <td><input type="text" id="title" name="title" value="<%=title%>" accesskey="1" autocomplete="off" required="required"
+                    autofocus />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><label for="content">글내용</label></th>
+                <td>
+                  <textarea name="content" id="content" cols="30" rows="10"><%=content%></textarea>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><label for="name">작성자</label></th>
+                <td><input type="text" id="name" name="name" value="<%=name%>" accesskey="2" maxlength="15" autocomplete="off"
+                    required="required" /></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="btn_container">
+            <button type="button" class="confirm edit">확인</button>
+            <a href="/board/content/<%=id%>" class="cancel">취소</a>
+          </div>
+
+        </fieldset>
+      </form>
+    </section>
+
+    <script>
+      const $btnEdit = document.querySelector('.confirm.edit');
+
+      //새글 입력폼에 대한 유효성검사
+      $btnEdit.addEventListener('click', ()=>{
+        const $title = document.querySelector('#title');
+        const $name = document.querySelector('#name');
+
+        const title = $title.value.trim();
+        const name = $name.value.trim();
+
+        if(title === '' || title === null){
+          alert('글 제목을 입력해 주세요~!');
+          $title.focus();
+          return;
+        }
+
+        if(name === '' || name === null){
+          alert('작성자명을 입력해 주세요~!');
+          $name.focus();
+          return;
+        }
+
+        document.querySelector('#frmEdit').action = '/board/edit';
+        document.forms['frmEdit'].method = 'post';
+        document.forms['frmEdit'].submit();
+      });
+    </script>
+<%- include('./../fragment/footer') %>

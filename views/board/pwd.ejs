@@ -1,0 +1,93 @@
+<%- include('./../fragment/header') %>
+
+    <section>
+      <p><a href="/board" class="btn">목록보기</a></p>
+
+      <form name="frmPwd">
+        <input type="hidden" name="mode" value="<%=mode%>">
+        <input type="hidden" name="id" value="<%=id%>">
+        <fieldset>
+          <legend>비번 입력폼</legend>
+          <table class="smit_elem">
+            <caption>비번입력</caption>
+            <colgroup>
+              <col style="width: 150px" />
+              <col />
+            </colgroup>
+            <thead></thead>
+            <tfoot></tfoot>
+            <tbody>
+              <tr>
+                <th scope="row"><label for="pwd">비밀번호</label></th>
+                <td><input type="password" id="pwd" name="pwd" accesskey="3" maxlength="15" autocomplete="off"
+                    autofocus /></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="btn_container">
+            <button type="button" class="confirm pwd">확인</button>
+            <a href="/board/content/<%=id%>" class="cancel">취소</a>
+          </div>
+        </fieldset>
+      </form>
+
+    </section>
+
+    <script>
+      const $frmPwd = document.querySelector('form');
+      $frmPwd.addEventListener('submit', evt=>{evt.preventDefault();});
+
+      const $btnPwd = document.querySelector('.pwd');
+
+      $btnPwd.addEventListener('click', ()=>{
+        const $pwd = document.getElementById('pwd');
+        const pwd = $pwd.value.trim();
+
+        if(pwd==='' || pwd===null){
+          alert('비밀번호를 입력해 주세요~!');
+          $pwd.focus();
+          return;
+        }
+
+        document.forms['frmPwd'].action = '/board/pwd';
+        document.forms['frmPwd'].method = 'post';
+        document.forms['frmPwd'].submit();
+      });
+    </script>
+
+<script>
+  window.addEventListener('load', function(){
+    
+    const params = {};
+    const qs = location.search.slice(1);
+    console.log(`qs = ${qs}`);//error=incorrect-password
+
+    //20-httpServer > 50_http_server_요청객체_응답객체.js 예제코드 참고
+    //방법1 - 직접 쿼리스트링을 JSON 형태로 변환
+    qs.split('&').forEach((item,idx)=>{
+      console.log(`item = ${item}`);//username=duly
+
+      const tmpArr = item.split('=');//[username, duly]
+      let key = tmpArr[0];//username, phone
+      let val = tmpArr[1];//duly, 010-2459-2222
+
+      params[key] = val;
+    });//end of forEach()
+
+
+    //방법2 - URLSearchParams() 생성자함수를 이용하여 쿼리스트링을 JSON 형태로 변환
+      const urlParams = new URLSearchParams(qs);
+      urlParams.forEach((value, key)=>{
+        params[key] = value;
+      });
+
+
+    console.log('params =', params);
+
+    if(params.error === 'incorrect-password'){
+      alert('입력한 비밀번호가 잘못되었습니다.');
+    }
+
+  });
+</script>
+<%- include('./../fragment/footer') %>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>404 에러</title>
+  <style>
+    *{margin:0;padding:0;}
+    a:link,a:visited{color:#000;text-decoration:none;}
+    header>h1{margin-top:100px;text-align:center;}
+    section{display:flex;justify-content:space-between;width:800px;margin:100px auto;}
+    section>h2{display:flex;flex-flow:column nowrap;justify-content:center;align-items:center;width:35%;padding-right:100px;border-right:1px solid #222;}
+    section>h2>span{display:block;font-size:80px;text-align:center;}
+    section>div{width:75%;padding-left:100px;}
+    section>div>p{margin-bottom:20px;font-weight:600;font-size:24px;text-indent:-16px;}
+    section>div>ul>li{line-height:1.6;}
+    section>div>a{display:block;width:200px;height:45px;margin:20px 0 0 -16px;font-weight:600;line-height:45px;text-align:center;border:1px solid #222;}
+    section>div>a:hover{background-color:#eee;}
+    footer>address{height:50px;line-height:50px;text-align:center;}
+  </style>
+</head>
+<body>
+  <div id="wrap">
+  	<header><h1>에러발생</h1></header>
+  	<section>
+  	 <h2>
+  	   <span>오류</span>
+  	   <span>404</span>
+  	 </h2>
+  	 <div>
+  	   <p>페이지를 찾을 수 없습니다</p>
+  	   <ul>
+  	   	<li>페이지가 이동되었거나 삭제되었을 수 있습니다.</li>
+  	   	<li>오래되거나 끊어진 링크를 사용했을 수 있습니다.</li>
+  	   	<li>주소 (URL)를 잘못 입력했을 수 있습니다.</li>
+  	   </ul>
+  	   <a href="#" onclick="history.back();">이전 페이지로 가기</a>
+  	 </div>
+  	</section>
+  	<footer><address>&copy;Designed by Duly</address></footer>
+  </div>
+</body>
+</html>

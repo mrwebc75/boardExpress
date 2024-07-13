@@ -1,0 +1,43 @@
+<%- include('./../fragment/header') %>
+
+    <section class="board-list">
+      <p><a href="/board/write" class="btn">글쓰기</a></p>
+      <table>
+        <caption>게시판 글목록</caption>
+        <colgroup>
+          <col style="width: 70px;" />
+          <col style="width: 570px;" />
+          <col style="width: 180px;" />
+          <col style="width: 100px;" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">아이디</th>
+            <th scope="col">글제목</th>
+            <th scope="col">등록일</th>
+            <th scope="col">조회수</th>
+          </tr>
+        </thead>
+        <tfoot></tfoot>
+        <tbody>
+          <% if(database.length>0){ %>
+              <% for(let i=0; i<database.length; i++){ %>
+                <tr>
+                  <td><%=database[i].id%></td>
+                  <td>
+                    <a href="/board/content/<%=database[i].id%>"><%=database[i].title%></a>
+                  </td>
+                  <td><%=database[i].date%></td>
+                  <td><%=database[i].count%></td>
+                </tr>
+              <% } %>
+          <% } else { %>
+            <tr>
+              <td colspan="4">작성된 게시글이 없습니다.</td>
+            </tr>
+          <% } %>  
+        </tbody>
+      </table>
+    </section>
+
+<%- include('./../fragment/footer') %>

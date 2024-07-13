@@ -1,0 +1,88 @@
+<%- include('./../fragment/header') %>
+
+    <section>
+      <p><a href="/board" class="btn">목록보기</a></p>
+      <form name="frmWrite" id="frmWrite">
+        <fieldset>
+          <legend>글 입력폼</legend>
+
+          <table class="smit_elem">
+            <caption>정보입력</caption>
+            <colgroup>
+              <col style="width: 150px" />
+              <col />
+            </colgroup>
+            <thead></thead>
+            <tfoot></tfoot>
+            <tbody>
+              <tr>
+                <th scope="row"><label for="title">글제목</label></th>
+                <td><input type="text" id="title" name="title" accesskey="1" autocomplete="off" required="required"
+                    autofocus />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><label for="content">글내용</label></th>
+                <td>
+                  <textarea name="content" id="content" cols="30" rows="10"></textarea>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><label for="name">작성자</label></th>
+                <td><input type="text" id="name" name="name" accesskey="2" maxlength="15" autocomplete="off"
+                    required="required" /></td>
+              </tr>
+              <tr>
+                <th scope="row"><label for="pwd">비밀번호</label></th>
+                <td><input type="password" id="pwd" name="pwd" accesskey="3" maxlength="15" autocomplete="off" /></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="btn_container">
+            <button type="button" class="confirm write">확인</button>
+            <button type="button" class="cancel">취소</button>
+          </div>
+
+        </fieldset>
+      </form>
+    </section>
+
+    <script>
+      const $btnWrite = document.querySelector('.confirm.write');
+
+      //새글 입력폼에 대한 유효성검사
+      $btnWrite.addEventListener('click', ()=>{
+        const $title = document.querySelector('#frmWrite #title');
+        const $name = document.querySelector('#frmWrite #name');
+        const $pwd = document.querySelector('#frmWrite #pwd');
+
+        const title = $title.value.trim();
+        const name = $name.value.trim();
+        const pwd = $pwd.value.trim();
+
+        if(title === '' || title === null){
+          alert('글 제목을 입력해 주세요~!');
+          $title.focus();
+          return;
+        }
+
+        if(name === '' || name === null){
+          alert('작성자명을 입력해 주세요~!');
+          $name.focus();
+          return;
+        }
+
+        if(pwd === '' || pwd === null){
+          alert('비밀번호를 입력해 주세요~!');
+          $pwd.focus();
+          return;
+        }
+
+        document.querySelector('#frmWrite').action = '/board/write';
+        document.forms['frmWrite'].method = 'post';
+        document.forms['frmWrite'].submit();
+
+        
+      });
+    </script>
+<%- include('./../fragment/footer') %>
